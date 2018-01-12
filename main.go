@@ -50,7 +50,7 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 			switch message := event.Message.(type) {
 			case *linebot.TextMessage:
 				var balasan string
-				if strings.EqualFold(message.Text, "tentang produk"){
+				if strings.EqualFold(message.Text, "tentang produks"){
 					balasan = "Ok anda memilih tentang produk. Produk yang tersedia di Tako adalah sbb. Apa yang ingin anda lakukan lebih lanjut? Tentang Franchise, Menjadi Investor, Partnership lainnya."
 				}else if strings.EqualFold(message.Text, "tentang franchise"){
 					balasan = "Ok anda memilih tentang franchise"
