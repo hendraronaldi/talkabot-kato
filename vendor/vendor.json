@@ -1,0 +1,199 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "h8ZzyQTRljjxHgqCHniOd1hURV8=",
+			"path": "github.com/line/line-bot-sdk-go/linebot",
+			"revision": "b7e1bd128fef0e6a532d1afce049cbcd8dc5f4c8",
+			"revisionTime": "2016-11-01T06:09:53Z"
+		},
+		{
+			"checksumSHA1": "9jjO5GjLa0XF/nfWihF02RoH4qc=",
+			"path": "golang.org/x/net/context",
+			"revision": "9ef22118a4b25863aa94546daffbc0a18feaafb3",
+			"revisionTime": "2016-11-09T21:27:32Z"
+		},
+		{
+			"checksumSHA1": "WHc3uByvGaMcnSoI21fhzYgbOgg=",
+			"path": "golang.org/x/net/context/ctxhttp",
+			"revision": "9ef22118a4b25863aa94546daffbc0a18feaafb3",
+			"revisionTime": "2016-11-09T21:27:32Z"
+		},
+		{
+			"checksumSHA1": "hFFFYFqtS10h1arNtLUo2MmkYZE=",
+			"path": "github.com/cenkalti/backoff",
+			"revision": "61153c768f31ee5f130071d08fc82b85208528de",
+			"revisionTime": "2017-07-11T19:02:43Z"
+		},
+		{
+			"checksumSHA1": "1/M8luB1ZFGCK+B9duA2u9c6Igs=",
+			"path": "github.com/dghubble/go-twitter/twitter",
+			"revision": "f74be7f0f20b142558537ca43852457f7c52e051",
+			"revisionTime": "2017-07-17T22:45:08Z"
+		},
+		{
+			"checksumSHA1": "eHUafY0QgruQXMG6qukwc/wrf/M=",
+			"path": "github.com/dghubble/oauth1",
+			"revision": "7d51c10e15ca32917b32ce43f6e25840d6951db4",
+			"revisionTime": "2017-05-16T17:24:31Z"
+		},
+		{
+			"checksumSHA1": "LrOnRW6KCAcKDnKPs+Hibtb7Duk=",
+			"path": "github.com/dghubble/sling",
+			"revision": "80ec33c6152a53edb5545864ca37567b506c4ca5",
+			"revisionTime": "2017-06-29T03:54:44Z"
+		},
+		{
+			"checksumSHA1": "7c3FuEadBInl/4ExSrB7iJMXpe4=",
+			"path": "github.com/dustin/go-broadcast",
+			"revision": "3bdf6d4a7164a50bc19d5f230e2981d87d2584f1",
+			"revisionTime": "2014-06-27T04:00:55Z"
+		},
+		{
+			"checksumSHA1": "AANTVr9CVVyzsgviODY6Wi2thuM=",
+			"path": "github.com/fatih/color",
+			"revision": "62e9147c64a1ed519147b62a56a14e83e2be02c1",
+			"revisionTime": "2017-05-23T20:24:04Z"
+		},
+		{
+			"checksumSHA1": "2UmMbNHc8FBr98mJFN1k8ISOIHk=",
+			"path": "github.com/garyburd/redigo/internal",
+			"revision": "48545177e92ae3e7bcdbd50b42f7a139e6a268da",
+			"revisionTime": "2017-02-08T21:16:23Z"
+		},
+		{
+			"checksumSHA1": "81OSg/NapmTaRpSS+oYsPVE0b1Y=",
+			"path": "github.com/garyburd/redigo/redis",
+			"revision": "48545177e92ae3e7bcdbd50b42f7a139e6a268da",
+			"revisionTime": "2017-02-08T21:16:23Z"
+		},
+		{
+			"checksumSHA1": "bvHZOqZm2Gl0XkMh4oOB8iZ7geQ=",
+			"path": "github.com/gin-gonic/gin",
+			"revision": "d5b353c5d5a560322e6d96121c814115562501f7",
+			"revisionTime": "2017-04-28T10:59:23Z"
+		},
+		{
+			"checksumSHA1": "UsILDoIB2S7ra+w2fMdb85mX3HM=",
+			"path": "github.com/gin-gonic/gin/binding",
+			"revision": "d5b353c5d5a560322e6d96121c814115562501f7",
+			"revisionTime": "2017-04-28T10:59:23Z"
+		},
+		{
+			"checksumSHA1": "PHv9FNb7YavJWtAHcY6ZgXmkmHs=",
+			"path": "github.com/gin-gonic/gin/render",
+			"revision": "d5b353c5d5a560322e6d96121c814115562501f7",
+			"revisionTime": "2017-04-28T10:59:23Z"
+		},
+		{
+			"checksumSHA1": "kBeNcaKk56FguvPSUCEaH6AxpRc=",
+			"path": "github.com/golang/protobuf/proto",
+			"revision": "b50ceb1fa9818fa4d78b016c2d4ae025593a7ce3",
+			"revisionTime": "2017-05-09T16:59:01Z"
+		},
+		{
+			"checksumSHA1": "p3IB18uJRs4dL2K5yx24MrLYE9A=",
+			"path": "github.com/google/go-querystring/query",
+			"revision": "53e6ce116135b80d037921a7fdd5138cf32d7a8a",
+			"revisionTime": "2017-01-11T10:11:55Z"
+		},
+		{
+			"checksumSHA1": "6DVd4tXfoer2bc5pcEVOj0bNf7w=",
+			"path": "github.com/itsjamie/gin-cors",
+			"revision": "97b4a9da79331dfa2b6d35f4cdd1e50f5148859c",
+			"revisionTime": "2016-04-20T13:07:02Z"
+		},
+		{
+			"checksumSHA1": "Epx/Fewr0QrXZRdg26+97oIoV2k=",
+			"path": "github.com/jasonlvhit/gocron",
+			"revision": "42a5804d37aa0b9239b265e894a16b8edbf52d54",
+			"revisionTime": "2016-06-29T18:10:17Z"
+		},
+		{
+			"checksumSHA1": "b0T0Hzd+zYk+OCDTFMps+jwa/nY=",
+			"path": "github.com/manucorporat/sse",
+			"revision": "ee05b128a739a0fb76c7ebd3ae4810c1de808d6d",
+			"revisionTime": "2016-01-26T18:01:36Z"
+		},
+		{
+			"checksumSHA1": "9if9IBLsxkarJ804NPWAzgskIAk=",
+			"path": "github.com/manucorporat/stats",
+			"revision": "8f2d6ace262eba462e9beb552382c98be51d807b",
+			"revisionTime": "2015-05-31T20:46:25Z"
+		},
+		{
+			"checksumSHA1": "qNkx9+OTwZI6aFv7K9zuFCGODUw=",
+			"path": "github.com/mattn/go-colorable",
+			"revision": "941b50ebc6efddf4c41c8e4537a5f68a4e686b24",
+			"revisionTime": "2017-06-15T03:49:14Z"
+		},
+		{
+			"checksumSHA1": "U6lX43KDDlNOn+Z0Yyww+ZzHfFo=",
+			"path": "github.com/mattn/go-isatty",
+			"revision": "fc9e8d8ef48496124e79ae0df75490096eccf6fe",
+			"revisionTime": "2017-03-22T23:44:13Z"
+		},
+		{
+			"checksumSHA1": "01f37fxGuNYhBcD6tdYYOV5p6iE=",
+			"path": "github.com/mikespook/wc-api-golang/woocommerce",
+			"revision": "2ac125e0c76c01d965366bf33379a9d57abe7457",
+			"revisionTime": "2017-04-11T00:29:31Z"
+		},
+		{
+			"checksumSHA1": "6KmFMO4jj590xBD/+fBTR2red7o=",
+			"path": "github.com/reactivex/rxgo",
+			"revision": "ef39238759f5a55b50475f2991aa37aeac709164",
+			"revisionTime": "2017-06-20T13:29:50Z"
+		},
+		{
+			"checksumSHA1": "Y+HGqEkYM15ir+J93MEaHdyFy0c=",
+			"path": "golang.org/x/net/context",
+			"revision": "c9b681d35165f1995d6f3034e61f8761d4b90c99",
+			"revisionTime": "2017-05-10T00:04:54Z"
+		},
+		{
+			"checksumSHA1": "oS0UZOGWVVsVciOQ8nZJ582mFF8=",
+			"path": "golang.org/x/sys/unix",
+			"revision": "9ccfe848b9db8435a24c424abbc07a921adf1df5",
+			"revisionTime": "2017-04-27T03:54:25Z"
+		},
+		{
+			"checksumSHA1": "39V1idWER42Lmcmg2Uy40wMzOlo=",
+			"path": "gopkg.in/go-playground/validator.v8",
+			"revision": "5f57d2222ad794d0dffb07e664ea05e2ee07d60c",
+			"revisionTime": "2016-07-18T13:41:25Z"
+		},
+		{
+			"checksumSHA1": "1D8GzeoFGUs5FZOoyC2DpQg8c5Y=",
+			"path": "gopkg.in/mgo.v2",
+			"revision": "3f83fa5005286a7fe593b055f0d7771a7dce4655",
+			"revisionTime": "2016-08-18T02:01:20Z"
+		},
+		{
+			"checksumSHA1": "YsB2DChSV9HxdzHaKATllAUKWSI=",
+			"path": "gopkg.in/mgo.v2/bson",
+			"revision": "3f83fa5005286a7fe593b055f0d7771a7dce4655",
+			"revisionTime": "2016-08-18T02:01:20Z"
+		},
+		{
+			"checksumSHA1": "OU/wHTJqhyQfyRnXMVWx1Ox06kQ=",
+			"path": "gopkg.in/redis.v5",
+			"revision": "a16aeec10ff407b1e7be6dd35797ccf5426ef0f0",
+			"revisionTime": "2017-03-04T11:38:25Z"
+		},
+		{
+			"checksumSHA1": "efyYmNqK7vcPhXW4KXfwbdA1wr4=",
+			"path": "gopkg.in/redis.v5/internal",
+			"revision": "a16aeec10ff407b1e7be6dd35797ccf5426ef0f0",
+			"revisionTime": "2017-03-04T11:38:25Z"
+		},
+		{
+			"checksumSHA1": "fALlQNY1fM99NesfLJ50KguWsio=",
+			"path": "gopkg.in/yaml.v2",
+			"revision": "cd8b52f8269e0feb286dfeef29f8fe4d5b397e0b",
+			"revisionTime": "2017-04-07T17:21:22Z"
+		}
+	],
+	"rootPath": "work/talkabot-kato"
+}

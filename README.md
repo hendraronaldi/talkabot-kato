@@ -1,128 +1,85 @@
-# line-bot-sdk-go
+LineBotTemplate: A simple Golang LineBot Template for Line Bot API
+==============
 
-[![Build Status](https://travis-ci.org/line/line-bot-sdk-go.svg?branch=master)](https://travis-ci.org/line/line-bot-sdk-go)
+[![Join the chat at https://gitter.im/kkdai/LineBotTemplate](https://badges.gitter.im/kkdai/LineBotTemplate.svg)](https://gitter.im/kkdai/LineBotTemplate?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Go SDK for the LINE Messaging API
+ [![GoDoc](https://godoc.org/github.com/kkdai/LineBotTemplate.svg?status.svg)](https://godoc.org/github.com/kkdai/LineBotTemplate)  [![Build Status](https://travis-ci.org/kkdai/LineBotTemplate.svg?branch=master)](https://travis-ci.org/kkdai/LineBotTemplate.svg)
+
+[![goreportcard.com](https://goreportcard.com/badge/github.com/kkdai/LineBotTemplate)](https://goreportcard.com/report/github.com/kkdai/LineBotTemplate)
 
 
-## About LINE Messaging API
+Installation and Usage
+=============
 
-See the official API documentation for more information.
+### 1. Got A Line Bot API devloper account
 
-English: https://developers.line.me/en/docs/messaging-api/reference/<br>
-Japanese: https://developers.line.me/ja/docs/messaging-api/reference/
+[Make sure you already registered](https://business.line.me/zh-hant/services/bot), if you need use Line Bot.
 
-## Installation ##
+### 2. Just Deploy the same on Heroku
 
-```sh
-$ go get github.com/line/line-bot-sdk-go/linebot
-```
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-## Configuration ##
+Remember your heroku, ID.
 
-```go
-import (
-	"github.com/line/line-bot-sdk-go/linebot"
-)
+<br><br>
 
-func main() {
-	bot, err := linebot.New("<channel secret>", "<channel access token>")
-	...
-}
+### 3. Go to Line Bot Dashboard, setup basic API
 
-```
+Setup your basic account information. Here is some info you will need to know.
 
-### Configuration with http.Client ###
+- `Callback URL`: https://{YOUR_HEROKU_SERVER_ID}.herokuapp.com:443/callback
 
-```go
-	client := &http.Client{}
-	bot, err := linebot.New("<channel secret>", "<channel accsss token>", linebot.WithHTTPClient(client))
-	...
-```
+You will get following info, need fill back to Heroku.
 
-## How to start ##
+- Channel Secret
+- Channel Access Token
 
-The LINE Messaging API uses the JSON data format.
-```ParseRequest()``` will help you to parse the ```*http.Request``` content and return a slice of Pointer point to Event Object.
+### 4. Back to Heroku again to setup environment variables
 
-```go
-	events, err := bot.ParseRequest(req)
-	if err != nil {
-		// Do something when something bad happened.
-	}
-```
+- Go to dashboard
+- Go to "Setting"
+- Go to "Config Variables", add following variables:
+	- "ChannelSecret"
+	- "ChannelAccessToken"
 
-The LINE Messaging API defines 7 types of event - ```EventTypeMessage```, ```EventTypeFollow```, ```EventTypeUnfollow```, ```EventTypeJoin```, ```EventTypeLeave```, ```EventTypePostback```, ```EventTypeBeacon```. You can check the event type by using ```event.Type```
+It all done.	
 
-```go
-	for _, event := range events {
-		if event.Type == linebot.EventTypeMessage {
-			// Do Something...
-		}
-	}
-```
 
-### Receiver ###
+### Video Tutorial:
 
-To send a message to a user, group, or room, you need either an ID
+- [How to deploy LineBotTemplate](https://www.youtube.com/watch?v=xpP51Kwuy2U)
+- [Hoe to modify your LineBotTemplate code](https://www.youtube.com/watch?v=ckij73sIRik)
 
-```go
-	userID := event.Source.UserID
-	groupID := event.Source.GroupID
-	RoomID := event.Source.RoomID
-```
 
-or a reply token.
+### Chinese Tutorial:
 
-```go
-	replyToken := event.ReplyToken
-```
+如果你看得懂繁體中文，這裡有[中文的介紹](http://www.evanlin.com/create-your-line-bot-golang/) 
 
-### Create message ###
+Inspired By
+=============
 
-The LINE Messaging API provides various types of message. To create a message, use ```New<Type>Message()```.
+- [Golang (heroku) で LINE Bot 作ってみる](http://qiita.com/dongri/items/ba150f04a98e96b160e7)
+- [LINE BOT をとりあえずタダで Heroku で動かす](http://qiita.com/yuya_takeyama/items/0660a59d13e2cd0b2516)
+- [阿美語萌典 BOT](https://github.com/miaoski/amis-linebot)
 
-```go
-	leftBtn := linebot.NewMessageTemplateAction("left", "left clicked")
-	rightBtn := linebot.NewMessageTemplateAction("right", "right clicked")
+Project52
+---------------
 
-	template := linebot.NewConfirmTemplate("Hello World", leftBtn, rightBtn)
+It is one of my [project 52](https://github.com/kkdai/project52).
 
-	messgage := linebot.NewTemplateMessage("Sorry :(, please update your app.", template)
-```
 
-### Send message ###
+License
+---------------
 
-With an ID, you can send message using ```PushMessage()```
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-```go
-	var messages []linebot.Message
+http://www.apache.org/licenses/LICENSE-2.0
 
-	// append some message to messages
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
-	_, err := bot.PushMessage(ID, messages...).Do()
-	if err != nil {
-		// Do something when some bad happened
-	}
-```
-
-With a reply token, you can reply to messages using ```ReplyMessage()```
-
-```go
-	var messages []linebot.Message
-
-	// append some message to messages
-
-	_, err := bot.ReplyMessage(replyToken, messages...).Do()
-	if err != nil {
-		// Do something when some bad happened
-	}
-```
-
-## Requirements
-
-This library requires Go 1.6 or later.
-
-## LICENSE
-
-See LICENSE.txt
