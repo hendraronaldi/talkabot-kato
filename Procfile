@@ -1,2 +1,2 @@
-web: LineBotTemplate
+web: talkabot-kato
 
