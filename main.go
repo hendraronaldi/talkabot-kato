@@ -198,7 +198,7 @@ func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken stri
 			return err
 		}
 	case "produk":
-		imageURL := app.appBaseURL + "blob/master/static/buttons/1040.jpg"
+		imageURL := "blob/master/static/buttons/1040.jpg"
 		template := linebot.NewCarouselTemplate(
 			linebot.NewCarouselColumn(
 				imageURL, "Franchise", "franchise",
@@ -222,7 +222,7 @@ func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken stri
 		}
 
 	case "kemitraan":
-		imageURL := app.appBaseURL + "blob/master/static/buttons/1040.jpg"
+		imageURL := "static/buttons/1040.jpg"
 		template := linebot.NewCarouselTemplate(
 			linebot.NewCarouselColumn(
 				imageURL, "option 1", "option 1",
@@ -247,7 +247,7 @@ func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken stri
 		if _, err := app.bot.ReplyMessage(
 			replyToken,
 			linebot.NewImagemapMessage(
-				app.appBaseURL+"tree/master/static/rich",
+				"tree/master/static/rich",
 				"Imagemap alt text",
 				linebot.ImagemapBaseSize{1040, 1040},
 				linebot.NewURIImagemapAction("https://store.line.me/family/manga/en", linebot.ImagemapArea{0, 0, 520, 520}),
@@ -279,7 +279,7 @@ func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken stri
 		}
 	default:
 		log.Printf("Echo message to %s: %s", replyToken, message.Text)
-		imageURL := app.appBaseURL + "blob/master/static/buttons/1040.jpg"
+		imageURL := "blob/master/static/buttons/1040.jpg"
 		template := linebot.NewCarouselTemplate(
 			linebot.NewCarouselColumn(
 				imageURL, "Produk", "detail produk",
