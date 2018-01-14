@@ -171,7 +171,7 @@ func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken stri
 			return app.replyText(replyToken, "Bot can't use profile API without user ID")
 		}
 	case "buttons":
-		imageURL := app.appBaseURL + "tree/master/static/buttons/1040.jpg"
+		imageURL := app.appBaseURL + "blob/master/static/buttons/1040.jpg"
 		template := linebot.NewButtonsTemplate(
 			imageURL, "My button sample", "Hello, my button",
 			linebot.NewURITemplateAction("Go to line.me", "https://line.me"),
@@ -198,7 +198,7 @@ func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken stri
 			return err
 		}
 	case "produk":
-		imageURL := app.appBaseURL + "tree/master/static/buttons/1040.jpg"
+		imageURL := app.appBaseURL + "blob/master/static/buttons/1040.jpg"
 		template := linebot.NewCarouselTemplate(
 			linebot.NewCarouselColumn(
 				imageURL, "Franchise", "franchise",
@@ -222,7 +222,7 @@ func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken stri
 		}
 
 	case "kemitraan":
-		imageURL := app.appBaseURL + "tree/master/static/buttons/1040.jpg"
+		imageURL := app.appBaseURL + "blob/master/static/buttons/1040.jpg"
 		template := linebot.NewCarouselTemplate(
 			linebot.NewCarouselColumn(
 				imageURL, "option 1", "option 1",
@@ -279,7 +279,7 @@ func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken stri
 		}
 	default:
 		log.Printf("Echo message to %s: %s", replyToken, message.Text)
-		imageURL := app.appBaseURL + "tree/master/static/buttons/1040.jpg"
+		imageURL := app.appBaseURL + "blob/master/static/buttons/1040.jpg"
 		template := linebot.NewCarouselTemplate(
 			linebot.NewCarouselColumn(
 				imageURL, "Produk", "detail produk",
