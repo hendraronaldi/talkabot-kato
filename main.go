@@ -51,15 +51,15 @@ func main() {
 	}
 }
 
-// KitchenSink app
-type KitchenSink struct {
+// testbot app
+type testbot struct {
 	bot         *linebot.Client
 	appBaseURL  string
 	downloadDir string
 }
 
 // NewKitchenSink function
-func NewKitchenSink(channelSecret, channelToken, appBaseURL string) (*KitchenSink, error) {
+func NewKitchenSink(channelSecret, channelToken, appBaseURL string) (*testbot, error) {
 	apiEndpointBase := os.Getenv("ENDPOINT_BASE")
 	if apiEndpointBase == "" {
 		apiEndpointBase = linebot.APIEndpointBase
@@ -79,7 +79,7 @@ func NewKitchenSink(channelSecret, channelToken, appBaseURL string) (*KitchenSin
 			return nil, err
 		}
 	}
-	return &KitchenSink{
+	return &testbot{
 		bot:         bot,
 		appBaseURL:  appBaseURL,
 		downloadDir: downloadDir,
@@ -87,7 +87,7 @@ func NewKitchenSink(channelSecret, channelToken, appBaseURL string) (*KitchenSin
 }
 
 // Callback function for http server
-func (app *KitchenSink) Callback(w http.ResponseWriter, r *http.Request) {
+func (app *testbot) Callback(w http.ResponseWriter, r *http.Request) {
 	events, err := app.bot.ParseRequest(r)
 	if err != nil {
 		if err == linebot.ErrInvalidSignature {
@@ -152,7 +152,7 @@ func (app *KitchenSink) Callback(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken string, source *linebot.EventSource) error {
+func (app *testbot) handleText(message *linebot.TextMessage, replyToken string, source *linebot.EventSource) error {
 	switch message.Text {
 	case "profile":
 		if source.UserID != "" {
@@ -198,47 +198,50 @@ func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken stri
 			return err
 		}
 	case "produk":
-		imageURL := "blob/master/static/buttons/1040.jpg"
+		imageURL := app.appBaseURL + "blob/master/static/buttons/1040.jpg"
 		template := linebot.NewCarouselTemplate(
 			linebot.NewCarouselColumn(
 				imageURL, "Franchise", "franchise",
-				linebot.NewPostbackTemplateAction("detail", "hello こんにちは", "hello"),
+				linebot.NewURITemplateAction("opsi 1", ""),
+				linebot.NewMessageTemplateAction("back", "back"),
 			),
 			linebot.NewCarouselColumn(
 				imageURL, "Menjadi Investor", "investor",
-				linebot.NewPostbackTemplateAction("detail", "hello こんにちは", "hello こんにちは"),
+				linebot.NewURITemplateAction("opsi 1", ""),
+				linebot.NewMessageTemplateAction("back", "back"),
 			),
 			linebot.NewCarouselColumn(
 				imageURL, "Lainnya", "lainnya",
-				linebot.NewPostbackTemplateAction("detail", "hello こんにちは", "hello こんにちは"),
+				linebot.NewURITemplateAction("opsi 1", ""),
+				linebot.NewMessageTemplateAction("back", "back"),
 			),
 		)
 		if _, err := app.bot.ReplyMessage(
 			replyToken,
 			linebot.NewTextMessage("About produk"),
-			linebot.NewTemplateMessage("produk alt text", template),
+			linebot.NewTemplateMessage("about produk", template),
 		).Do(); err != nil {
 			return err
 		}
 
 	case "kemitraan":
-		imageURL := "static/buttons/1040.jpg"
+		imageURL := app.appBaseURL + "blob/master/static/buttons/1040.jpg"
 		template := linebot.NewCarouselTemplate(
 			linebot.NewCarouselColumn(
 				imageURL, "option 1", "option 1",
-				linebot.NewURITemplateAction("Go to line.me", "https://line.me"),
-				linebot.NewPostbackTemplateAction("Say hello1", "hello こんにちは", ""),
+				linebot.NewURITemplateAction("opsi 1", ""),
+				linebot.NewMessageTemplateAction("back", "back"),
 			),
 			linebot.NewCarouselColumn(
 				imageURL, "option 2", "option 2",
-				linebot.NewPostbackTemplateAction("言 hello2", "hello こんにちは", "hello こんにちは"),
-				linebot.NewMessageTemplateAction("Say message", "Rice=米"),
+				linebot.NewURITemplateAction("opsi 1", ""),
+				linebot.NewMessageTemplateAction("back", "back"),
 			),
 		)
 		if _, err := app.bot.ReplyMessage(
 			replyToken,
 			linebot.NewTextMessage("About kemitraan"),
-			linebot.NewTemplateMessage("kemitraan alt text", template),
+			linebot.NewTemplateMessage("about kemitraan", template),
 		).Do(); err != nil {
 			return err
 		}
@@ -247,7 +250,7 @@ func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken stri
 		if _, err := app.bot.ReplyMessage(
 			replyToken,
 			linebot.NewImagemapMessage(
-				"tree/master/static/rich",
+				app.appBaseURL+"tree/master/static/rich",
 				"Imagemap alt text",
 				linebot.ImagemapBaseSize{1040, 1040},
 				linebot.NewURIImagemapAction("https://store.line.me/family/manga/en", linebot.ImagemapArea{0, 0, 520, 520}),
@@ -279,7 +282,7 @@ func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken stri
 		}
 	default:
 		log.Printf("Echo message to %s: %s", replyToken, message.Text)
-		imageURL := "blob/master/static/buttons/1040.jpg"
+		imageURL := app.appBaseURL + "blob/master/static/buttons/1040.jpg"
 		template := linebot.NewCarouselTemplate(
 			linebot.NewCarouselColumn(
 				imageURL, "Produk", "detail produk",
@@ -293,7 +296,7 @@ func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken stri
 		if _, err := app.bot.ReplyMessage(
 			replyToken,
 			linebot.NewTextMessage("Halo saya Tako, silahkan pilih pertanyaan berdasarkan kategori berikut"),
-			linebot.NewTemplateMessage("Carousel alt text", template),
+			linebot.NewTemplateMessage("about Tako", template),
 		).Do(); err != nil {
 			return err
 		}
@@ -301,7 +304,7 @@ func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken stri
 	return nil
 }
 
-func (app *KitchenSink) handleImage(message *linebot.ImageMessage, replyToken string) error {
+func (app *testbot) handleImage(message *linebot.ImageMessage, replyToken string) error {
 	return app.handleHeavyContent(message.ID, func(originalContent *os.File) error {
 		// You need to install ImageMagick.
 		// And you should consider about security and scalability.
@@ -323,7 +326,7 @@ func (app *KitchenSink) handleImage(message *linebot.ImageMessage, replyToken st
 	})
 }
 
-func (app *KitchenSink) handleVideo(message *linebot.VideoMessage, replyToken string) error {
+func (app *testbot) handleVideo(message *linebot.VideoMessage, replyToken string) error {
 	return app.handleHeavyContent(message.ID, func(originalContent *os.File) error {
 		// You need to install FFmpeg and ImageMagick.
 		// And you should consider about security and scalability.
@@ -345,7 +348,7 @@ func (app *KitchenSink) handleVideo(message *linebot.VideoMessage, replyToken st
 	})
 }
 
-func (app *KitchenSink) handleAudio(message *linebot.AudioMessage, replyToken string) error {
+func (app *testbot) handleAudio(message *linebot.AudioMessage, replyToken string) error {
 	return app.handleHeavyContent(message.ID, func(originalContent *os.File) error {
 		originalContentURL := app.appBaseURL + "/downloaded/" + filepath.Base(originalContent.Name())
 		if _, err := app.bot.ReplyMessage(
@@ -358,7 +361,7 @@ func (app *KitchenSink) handleAudio(message *linebot.AudioMessage, replyToken st
 	})
 }
 
-func (app *KitchenSink) handleLocation(message *linebot.LocationMessage, replyToken string) error {
+func (app *testbot) handleLocation(message *linebot.LocationMessage, replyToken string) error {
 	if _, err := app.bot.ReplyMessage(
 		replyToken,
 		linebot.NewLocationMessage(message.Title, message.Address, message.Latitude, message.Longitude),
@@ -368,7 +371,7 @@ func (app *KitchenSink) handleLocation(message *linebot.LocationMessage, replyTo
 	return nil
 }
 
-func (app *KitchenSink) handleSticker(message *linebot.StickerMessage, replyToken string) error {
+func (app *testbot) handleSticker(message *linebot.StickerMessage, replyToken string) error {
 	if _, err := app.bot.ReplyMessage(
 		replyToken,
 		linebot.NewStickerMessage(message.PackageID, message.StickerID),
@@ -378,7 +381,7 @@ func (app *KitchenSink) handleSticker(message *linebot.StickerMessage, replyToke
 	return nil
 }
 
-func (app *KitchenSink) replyText(replyToken, text string) error {
+func (app *testbot) replyText(replyToken, text string) error {
 	if _, err := app.bot.ReplyMessage(
 		replyToken,
 		linebot.NewTextMessage(text),
@@ -388,7 +391,7 @@ func (app *KitchenSink) replyText(replyToken, text string) error {
 	return nil
 }
 
-func (app *KitchenSink) handleHeavyContent(messageID string, callback func(*os.File) error) error {
+func (app *testbot) handleHeavyContent(messageID string, callback func(*os.File) error) error {
 	content, err := app.bot.GetMessageContent(messageID).Do()
 	if err != nil {
 		return err
@@ -402,7 +405,7 @@ func (app *KitchenSink) handleHeavyContent(messageID string, callback func(*os.F
 	return callback(originalConent)
 }
 
-func (app *KitchenSink) saveContent(content io.ReadCloser) (*os.File, error) {
+func (app *testbot) saveContent(content io.ReadCloser) (*os.File, error) {
 	file, err := ioutil.TempFile(app.downloadDir, "")
 	if err != nil {
 		return nil, err
