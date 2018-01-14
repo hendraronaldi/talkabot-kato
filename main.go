@@ -202,17 +202,17 @@ func (app *testbot) handleText(message *linebot.TextMessage, replyToken string, 
 		template := linebot.NewCarouselTemplate(
 			linebot.NewCarouselColumn(
 				imageURL, "Franchise", "franchise",
-				linebot.NewURITemplateAction("opsi 1", ""),
+				linebot.NewPostbackTemplateAction("opsi 1", "opsi 1", ""),
 				linebot.NewMessageTemplateAction("back", "back"),
 			),
 			linebot.NewCarouselColumn(
 				imageURL, "Menjadi Investor", "investor",
-				linebot.NewURITemplateAction("opsi 1", ""),
+				linebot.NewPostbackTemplateAction("opsi 1", "opsi 1", ""),
 				linebot.NewMessageTemplateAction("back", "back"),
 			),
 			linebot.NewCarouselColumn(
 				imageURL, "Lainnya", "lainnya",
-				linebot.NewURITemplateAction("opsi 1", ""),
+				linebot.NewPostbackTemplateAction("opsi 1", "opsi 1", ""),
 				linebot.NewMessageTemplateAction("back", "back"),
 			),
 		)
@@ -229,12 +229,12 @@ func (app *testbot) handleText(message *linebot.TextMessage, replyToken string, 
 		template := linebot.NewCarouselTemplate(
 			linebot.NewCarouselColumn(
 				imageURL, "option 1", "option 1",
-				linebot.NewURITemplateAction("opsi 1", ""),
+				linebot.NewPostbackTemplateAction("opsi 1", "opsi 1", ""),
 				linebot.NewMessageTemplateAction("back", "back"),
 			),
 			linebot.NewCarouselColumn(
 				imageURL, "option 2", "option 2",
-				linebot.NewURITemplateAction("opsi 1", ""),
+				linebot.NewPostbackTemplateAction("opsi 1", "opsi 1", ""),
 				linebot.NewMessageTemplateAction("back", "back"),
 			),
 		)
