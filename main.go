@@ -154,49 +154,6 @@ func (app *testbot) Callback(w http.ResponseWriter, r *http.Request) {
 
 func (app *testbot) handleText(message *linebot.TextMessage, replyToken string, source *linebot.EventSource) error {
 	switch message.Text {
-	case "profile":
-		if source.UserID != "" {
-			profile, err := app.bot.GetProfile(source.UserID).Do()
-			if err != nil {
-				return app.replyText(replyToken, err.Error())
-			}
-			if _, err := app.bot.ReplyMessage(
-				replyToken,
-				linebot.NewTextMessage("Display name: "+profile.DisplayName),
-				linebot.NewTextMessage("Status message: "+profile.StatusMessage),
-			).Do(); err != nil {
-				return err
-			}
-		} else {
-			return app.replyText(replyToken, "Bot can't use profile API without user ID")
-		}
-	case "buttons":
-		imageURL := app.appBaseURL + "blob/master/static/buttons/1040.jpg"
-		template := linebot.NewButtonsTemplate(
-			imageURL, "My button sample", "Hello, my button",
-			linebot.NewURITemplateAction("Go to line.me", "https://line.me"),
-			linebot.NewPostbackTemplateAction("Say hello1", "hello こんにちは", ""),
-			linebot.NewPostbackTemplateAction("言 hello2", "hello こんにちは", "hello こんにちは"),
-			linebot.NewMessageTemplateAction("Say message", "Rice=米"),
-		)
-		if _, err := app.bot.ReplyMessage(
-			replyToken,
-			linebot.NewTemplateMessage("Buttons alt text", template),
-		).Do(); err != nil {
-			return err
-		}
-	case "confirm":
-		template := linebot.NewConfirmTemplate(
-			"Do it?",
-			linebot.NewMessageTemplateAction("Yes", "Yes!"),
-			linebot.NewMessageTemplateAction("No", "No!"),
-		)
-		if _, err := app.bot.ReplyMessage(
-			replyToken,
-			linebot.NewTemplateMessage("Confirm alt text", template),
-		).Do(); err != nil {
-			return err
-		}
 	case "produk":
 		imageURL := app.appBaseURL + "blob/master/static/buttons/1040.jpg"
 		template := linebot.NewCarouselTemplate(
@@ -223,7 +180,6 @@ func (app *testbot) handleText(message *linebot.TextMessage, replyToken string, 
 		).Do(); err != nil {
 			return err
 		}
-
 	case "kemitraan":
 		imageURL := app.appBaseURL + "blob/master/static/buttons/1040.jpg"
 		template := linebot.NewCarouselTemplate(
@@ -244,41 +200,6 @@ func (app *testbot) handleText(message *linebot.TextMessage, replyToken string, 
 			linebot.NewTemplateMessage("about kemitraan", template),
 		).Do(); err != nil {
 			return err
-		}
-
-	case "imagemap":
-		if _, err := app.bot.ReplyMessage(
-			replyToken,
-			linebot.NewImagemapMessage(
-				app.appBaseURL+"tree/master/static/rich",
-				"Imagemap alt text",
-				linebot.ImagemapBaseSize{1040, 1040},
-				linebot.NewURIImagemapAction("https://store.line.me/family/manga/en", linebot.ImagemapArea{0, 0, 520, 520}),
-				linebot.NewURIImagemapAction("https://store.line.me/family/music/en", linebot.ImagemapArea{520, 0, 520, 520}),
-				linebot.NewURIImagemapAction("https://store.line.me/family/play/en", linebot.ImagemapArea{0, 520, 520, 520}),
-				linebot.NewMessageImagemapAction("URANAI!", linebot.ImagemapArea{520, 520, 520, 520}),
-			),
-		).Do(); err != nil {
-			return err
-		}
-	case "bye":
-		switch source.Type {
-		case linebot.EventSourceTypeUser:
-			return app.replyText(replyToken, "Bot can't leave from 1:1 chat")
-		case linebot.EventSourceTypeGroup:
-			if err := app.replyText(replyToken, "Leaving group"); err != nil {
-				return err
-			}
-			if _, err := app.bot.LeaveGroup(source.GroupID).Do(); err != nil {
-				return app.replyText(replyToken, err.Error())
-			}
-		case linebot.EventSourceTypeRoom:
-			if err := app.replyText(replyToken, "Leaving room"); err != nil {
-				return err
-			}
-			if _, err := app.bot.LeaveRoom(source.RoomID).Do(); err != nil {
-				return app.replyText(replyToken, err.Error())
-			}
 		}
 	default:
 		log.Printf("Echo message to %s: %s", replyToken, message.Text)
