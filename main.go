@@ -201,23 +201,21 @@ func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken stri
 		imageURL := app.appBaseURL + "/static/buttons/1040.jpg"
 		template := linebot.NewCarouselTemplate(
 			linebot.NewCarouselColumn(
-				imageURL, "Franchise", "",
-				linebot.NewPostbackTemplateAction("Say hello1", "hello こんにちは", ""),
+				imageURL, "Franchise", "franchise",
+				linebot.NewPostbackTemplateAction("detail", "hello こんにちは", "hello"),
 			),
 			linebot.NewCarouselColumn(
-				imageURL, "Menjadi Investor", "",
-				linebot.NewPostbackTemplateAction("言 hello2", "hello こんにちは", "hello こんにちは"),
-				linebot.NewMessageTemplateAction("Say message", "Rice=米"),
+				imageURL, "Menjadi Investor", "investor",
+				linebot.NewPostbackTemplateAction("detail", "hello こんにちは", "hello こんにちは"),
 			),
 			linebot.NewCarouselColumn(
-				imageURL, "Partnership Lainnya", "",
-				linebot.NewPostbackTemplateAction("言 hello2", "hello こんにちは", "hello こんにちは"),
-				linebot.NewMessageTemplateAction("Say message", "Rice=米"),
+				imageURL, "Lainnya", "lainnya",
+				linebot.NewPostbackTemplateAction("detail", "hello こんにちは", "hello こんにちは"),
 			),
 		)
 		if _, err := app.bot.ReplyMessage(
 			replyToken,
-			linebot.NewTextMessage("Penjelasan singkat mengenai produk"),
+			linebot.NewTextMessage("About produk"),
 			linebot.NewTemplateMessage("produk alt text", template),
 		).Do(); err != nil {
 			return err
@@ -227,19 +225,19 @@ func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken stri
 		imageURL := app.appBaseURL + "/static/buttons/1040.jpg"
 		template := linebot.NewCarouselTemplate(
 			linebot.NewCarouselColumn(
-				imageURL, "option 1", "",
+				imageURL, "option 1", "option 1",
 				linebot.NewURITemplateAction("Go to line.me", "https://line.me"),
 				linebot.NewPostbackTemplateAction("Say hello1", "hello こんにちは", ""),
 			),
 			linebot.NewCarouselColumn(
-				imageURL, "option 2", "",
+				imageURL, "option 2", "option 2",
 				linebot.NewPostbackTemplateAction("言 hello2", "hello こんにちは", "hello こんにちは"),
 				linebot.NewMessageTemplateAction("Say message", "Rice=米"),
 			),
 		)
 		if _, err := app.bot.ReplyMessage(
 			replyToken,
-			linebot.NewTextMessage("Penjelasan singkat mengenai kemitraan"),
+			linebot.NewTextMessage("About kemitraan"),
 			linebot.NewTemplateMessage("kemitraan alt text", template),
 		).Do(); err != nil {
 			return err
@@ -284,12 +282,12 @@ func (app *KitchenSink) handleText(message *linebot.TextMessage, replyToken stri
 		imageURL := app.appBaseURL + "/static/buttons/1040.jpg"
 		template := linebot.NewCarouselTemplate(
 			linebot.NewCarouselColumn(
-				imageURL, "Produk", "",
-				linebot.NewMessageTemplateAction("Detail Mengenai Produk", "produk"),
+				imageURL, "Produk", "detail produk",
+				linebot.NewMessageTemplateAction("Detail Produk", "produk"),
 			),
 			linebot.NewCarouselColumn(
-				imageURL, "Kemitraan", "",
-				linebot.NewMessageTemplateAction("Detail Mengenai Kemitraan", "kemitraan"),
+				imageURL, "Kemitraan", "detail kemitraan",
+				linebot.NewMessageTemplateAction("Detail Kemitraan", "kemitraan"),
 			),
 		)
 		if _, err := app.bot.ReplyMessage(
